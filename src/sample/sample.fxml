@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <LineChart fx:id="lineChart" layoutX="50.0" layoutY="31.0" title="Salary Chart">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <Button fx:id="load" layoutX="100.0" layoutY="431.0" mnemonicParsing="false" text="Load Chart" />
+      <Button fx:id="max" layoutX="205.0" layoutY="431.0" mnemonicParsing="false" text="Max" />
+      <Button fx:id="sum" layoutX="260.0" layoutY="431.0" mnemonicParsing="false" text="Sum" />
+      <Button fx:id="sort" layoutX="330.0" layoutY="431.0" mnemonicParsing="false" text="Sort" />
+   </children>
+</AnchorPane>
