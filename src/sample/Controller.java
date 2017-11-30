@@ -28,46 +28,59 @@ public class Controller {
     private int maxvalue;
     @FXML
     LineChart<String, Number> lineChart;
+    @FXML
+            Boolean isclicked=false;
 
     XYChart.Series<String, Number> numberXYchart = new XYChart.Series<>();
     XYChart.Series<String, Number> numberSeries = new XYChart.Series<>();
 
     public void initialize() {
-        numberXYchart.setName("Salary");
-        numberXYchart.getData().add(new XYChart.Data<>("Gor", 1200));
-        numberXYchart.getData().add(new XYChart.Data<>("Ara", 1800));
-        numberXYchart.getData().add(new XYChart.Data<>("Aram", 1900));
-        numberXYchart.getData().add(new XYChart.Data<>("Artur", 1100));
-        numberXYchart.getData().add(new XYChart.Data<>("Bob", 1450));
-        numberXYchart.setName("Salary");
-
-        lineChart.getData().add(numberXYchart);
 
 
-        for (XYChart.Data<String, Number> data : numberXYchart.getData()) {
-            summ += data.getYValue().intValue();
-        }
-        for (XYChart.Data<String, Number> data : numberXYchart.getData()) {
-            if (data.getYValue().intValue() >= maxvalue) {
-                maxvalue = data.getYValue().intValue();
-            }
-        }
+load.setOnAction(event -> { numberXYchart.setName("Salary");
+    numberXYchart.getData().add(new XYChart.Data<>("Gor", 1200));
+    numberXYchart.getData().add(new XYChart.Data<>("Ara", 1800));
+    numberXYchart.getData().add(new XYChart.Data<>("Aram", 1900));
+    numberXYchart.getData().add(new XYChart.Data<>("Artur", 1100));
+    numberXYchart.getData().add(new XYChart.Data<>("Bob", 1450));
+    numberXYchart.setName("Salary");
+    lineChart.getData().add(numberXYchart);
+    isclicked=true;
+    checkbutton();
+});
+
+
+
 
         sum.setOnAction(event -> {
 
-
+            for (XYChart.Data<String, Number> data : numberXYchart.getData()) {
+                summ += data.getYValue().intValue();
+            }
             System.out.println(summ);
 
         });
 
         max.setOnAction(event -> {
+            for (XYChart.Data<String, Number> data : numberXYchart.getData()) {
+                if (data.getYValue().intValue() >= maxvalue) {
+                    maxvalue = data.getYValue().intValue();
+                }
+            }
             System.out.println(maxvalue);
             clear.setOnAction(event1 -> {
                 lineChart.getData().remove(numberXYchart);
                 lineChart.getData().remove(numberSeries);
+                isclicked=false;
+                checkbutton();
+                load.setDisable(false);
+                sort.setDisable(false);
+
             });
             sort.setOnAction(event1 -> {
                 sortm();
+                isclicked=true;
+                checkbutton();
             });
         });
     }
@@ -92,6 +105,15 @@ public class Controller {
         });
 
 
+    }
+    public void checkbutton(){
+if (isclicked=true){
+    load.setDisable(true);
+    sort.setDisable(true);
+}else {
+    load.setDisable(false);
+    sort.setDisable(false);
+}
     }
 }
 
